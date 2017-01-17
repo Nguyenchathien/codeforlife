@@ -1,4 +1,4 @@
-<p align="center"><a href="https://the-control-group.github.io/voyager/" target="_blank"><img width="400" src="https://s3.amazonaws.com/thecontrolgroup/voyager.png"></a></p>
+<p align="center"><a href="https://github.com/Nguyenchathien/codeforlife/" target="_blank"><img width="400" src="https://s3.amazonaws.com/thecontrolgroup/voyager.png"></a></p>
 
 <p align="center">
 <a href="https://travis-ci.org/the-control-group/voyager"><img src="https://travis-ci.org/the-control-group/voyager.svg?branch=master" alt="Build Status"></a>
@@ -8,16 +8,10 @@
 <a href="https://packagist.org/packages/tcg/voyager"><img src="https://poser.pugx.org/tcg/voyager/license.svg?format=flat" alt="License"></a>
 </p>
 
-# **V**oyager - The Missing Laravel Admin
+# **Codeforlife - The Missing Laravel Admin
 Made with ❤️ by [The Control Group](https://www.thecontrolgroup.com)
 
 ![Voyager Screenshot](https://raw.githubusercontent.com/the-control-group/voyager/gh-pages/images/screenshot.png)
-
-Website & Documentation: https://the-control-group.github.io/voyager/
-
-Video Demo Here: https://devdojo.com/series/laravel-voyager-010/
-
-Join our Slack chat: https://voyager-slack-invitation.herokuapp.com/
 
 <hr>
 
@@ -26,7 +20,7 @@ Laravel Admin & BREAD System (Browse, Read, Edit, Add, & Delete), made for Larav
 After creating your new Laravel application you can include the Voyager package with the following command: 
 
 ```bash
-composer require tcg/voyager
+composer require nch/codeforlife
 ```
 
 Next make sure to create a new database and add your database credentials to your .env file:
@@ -46,7 +40,7 @@ Add the Voyager service provider to the `config/app.php` file in the `providers`
     //...
     
     // Package Service Providers
-    TCG\Voyager\VoyagerServiceProvider::class,
+    NCH\Codeforlife\VoyagerServiceProvider::class,
     // ...
     
     // Application Service Providers
@@ -54,19 +48,19 @@ Add the Voyager service provider to the `config/app.php` file in the `providers`
 ],
 ```
 
-Lastly, we can install voyager. You can do this either with or without dummy data.
+Lastly, we can install codeforlife. You can do this either with or without dummy data.
 The dummy data will include 1 admin account (if no users already exists), 1 demo page, 4 demo posts, 2 categories and 7 settings.
 
-To install Voyager without dummy simply run
+To install Codeforlife without dummy simply run
 
 ```bash
-php artisan voyager:install
+php artisan codeforlife:install
 ```
 
 If you prefer installing it with dummy run
 
 ```bash
-php artisan voyager:install --with-dummy
+php artisan codeforlife:install --with-dummy
 ```
 
 And we're all good to go! 
@@ -84,13 +78,13 @@ If you did not go with the dummy user, you may wish to assign admin priveleges t
 This can easily be done by running this command:
 
 ```bash
-php artisan voyager:admin your@email.com
+php artisan codeforlife:admin your@email.com
 ```
 
 If you did not install the dummy data and you wish to create a new admin user you can pass the `--create` flag, like so:
 
 ```bash
-php artisan voyager:admin your@email.com --create
+php artisan codeforlife:admin your@email.com --create
 ```
 
 And you will be prompted for the users name and password.

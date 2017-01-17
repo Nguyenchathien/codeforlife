@@ -1,13 +1,13 @@
 <?php
 
-namespace TCG\Voyager\Http\Controllers;
+namespace NCH\Codeforlife\Http\Controllers;
 
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use TCG\Voyager\Voyager;
+use NCH\Codeforlife\Codeforlife;
 
-class VoyagerMediaController extends Controller
+class CodeforlifeMediaController extends Controller
 {
     /** @var string */
     private $filesystem;
@@ -28,9 +28,9 @@ class VoyagerMediaController extends Controller
 
     public function index()
     {
-        Voyager::can('browse_media');
+        Codeforlife::can('browse_media');
 
-        return view('voyager::media.index');
+        return view('codeforlife::media.index');
     }
 
     public function files(Request $request)

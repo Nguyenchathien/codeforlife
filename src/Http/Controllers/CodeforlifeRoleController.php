@@ -1,17 +1,17 @@
 <?php
 
-namespace TCG\Voyager\Http\Controllers;
+namespace NCH\Codeforlife\Http\Controllers;
 
 use Illuminate\Http\Request;
-use TCG\Voyager\Models\DataType;
-use TCG\Voyager\Voyager;
+use NCH\Codeforlife\Models\DataType;
+use NCH\Codeforlife\Codeforlife;
 
-class VoyagerRoleController extends VoyagerBreadController
+class CodeforlifeRoleController extends CodeforlifeBreadController
 {
     // POST BR(E)AD
     public function update(Request $request, $id)
     {
-        Voyager::can('edit_roles');
+        Codeforlife::can('edit_roles');
 
         $slug = $this->getSlug($request);
 
@@ -23,7 +23,7 @@ class VoyagerRoleController extends VoyagerBreadController
         $data->permissions()->sync($request->input('permissions', []));
 
         return redirect()
-            ->route("voyager.{$dataType->slug}.index")
+            ->route("codeforlife.{$dataType->slug}.index")
             ->with([
                 'message'    => "Successfully Updated {$dataType->display_name_singular}",
                 'alert-type' => 'success',
@@ -33,14 +33,14 @@ class VoyagerRoleController extends VoyagerBreadController
     // POST BRE(A)D
     public function store(Request $request)
     {
-        Voyager::can('add_roles');
+        Codeforlife::can('add_roles');
 
         $slug = $this->getSlug($request);
 
         $dataType = DataType::where('slug', '=', $slug)->first();
 
-        if (function_exists('voyager_add_post')) {
-            voyager_add_post($request);
+        if (function_exists('codeforlife_add_post')) {
+            codeforlife_add_post($request);
         }
 
         $data = new $dataType->model_name();
@@ -49,7 +49,7 @@ class VoyagerRoleController extends VoyagerBreadController
         $data->permissions()->sync($request->input('permissions', []));
 
         return redirect()
-            ->route("voyager.{$dataType->slug}.index")
+            ->route("codeforlife.{$dataType->slug}.index")
             ->with([
                 'message'    => "Successfully Added New {$dataType->display_name_singular}",
                 'alert-type' => 'success',

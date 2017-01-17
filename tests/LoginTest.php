@@ -1,6 +1,6 @@
 <?php
 
-namespace TCG\Voyager\Tests;
+namespace NCH\Codeforlife\Tests;
 
 class LoginTest extends TestCase
 {
@@ -13,20 +13,20 @@ class LoginTest extends TestCase
 
     public function testSuccessfulLoginWithDefaultCredentials()
     {
-        $this->visit(route('voyager.login'));
+        $this->visit(route('codeforlife.login'));
         $this->type('admin@admin.com', 'email');
         $this->type('password', 'password');
         $this->press('Login');
-        $this->seePageIs(route('voyager.dashboard'));
+        $this->seePageIs(route('codeforlife.dashboard'));
     }
 
     public function testShowAnErrorMessageWhenITryToLoginWithWrongCredentials()
     {
-        $this->visit(route('voyager.login'))
+        $this->visit(route('codeforlife.login'))
              ->type('john@Doe.com', 'email')
              ->type('pass', 'password')
              ->press('Login')
-             ->seePageIs(route('voyager.login'))
+             ->seePageIs(route('codeforlife.login'))
              ->see('The given credentials don\'t match with an user registered.')
              ->seeInField('email', 'john@Doe.com');
     }

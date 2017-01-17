@@ -1,21 +1,21 @@
 <?php
 
-namespace TCG\Voyager\Http\Controllers;
+namespace NCH\Codeforlife\Http\Controllers;
 
 use Illuminate\Database\Schema\Blueprint;
 use Schema;
-use TCG\Voyager\Voyager;
+use NCH\Codeforlife\Codeforlife;
 
-class VoyagerUpgradeController extends Controller
+class CodeforlifeUpgradeController extends Controller
 {
     public function index()
     {
         $upgraded = $this->upgrade_v0_10_6();
 
         if ($upgraded) {
-            return redirect()->route('voyager.dashboard')->with(['message' => 'Database Schema has been Updated.', 'alert-type' => 'success']);
+            return redirect()->route('codeforlife.dashboard')->with(['message' => 'Database Schema has been Updated.', 'alert-type' => 'success']);
         } else {
-            return redirect()->route('voyager.dashboard');
+            return redirect()->route('codeforlife.dashboard');
         }
     }
 

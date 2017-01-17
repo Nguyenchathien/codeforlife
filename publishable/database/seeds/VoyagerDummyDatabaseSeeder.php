@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use TCG\Voyager\Traits\Seedable;
+use NCH\Codeforlife\Traits\Seedable;
 
-class VoyagerDummyDatabaseSeeder extends Seeder
+class CodeforliferDummyDatabaseSeeder extends Seeder
 {
     use Seedable;
 

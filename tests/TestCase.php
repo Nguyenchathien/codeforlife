@@ -1,14 +1,14 @@
 <?php
 
-namespace TCG\Voyager\Tests;
+namespace NCH\Codeforlife\Tests;
 
 use Exception;
 use Illuminate\Contracts\Debug\ExceptionHandler;
 use Illuminate\Foundation\Exceptions\Handler;
 use Illuminate\Support\Facades\Artisan;
 use Orchestra\Testbench\TestCase as OrchestraTestCase;
-use TCG\Voyager\Models\User;
-use TCG\Voyager\VoyagerServiceProvider;
+use NCH\Codeforlife\Models\User;
+use NCH\Codeforlife\CodeforlifeServiceProvider;
 
 class TestCase extends OrchestraTestCase
 {
@@ -38,7 +38,7 @@ class TestCase extends OrchestraTestCase
     protected function getPackageProviders($app)
     {
         return [
-            VoyagerServiceProvider::class,
+            CodeforlifeServiceProvider::class,
         ];
     }
 
@@ -66,8 +66,8 @@ class TestCase extends OrchestraTestCase
             'prefix'   => '',
         ]);
 
-        // Setup Voyager configuration
-        $app['config']->set('voyager.user.namespace', User::class);
+        // Setup codeforlife configuration
+        $app['config']->set('codeforlife.user.namespace', User::class);
 
         // Setup Authentication configuration
         $app['config']->set('auth.providers.users.model', User::class);
@@ -75,7 +75,7 @@ class TestCase extends OrchestraTestCase
 
     protected function install()
     {
-        $this->artisan('voyager:install', ['--with-dummy' => $this->withDummy]);
+        $this->artisan('codeforlife:install', ['--with-dummy' => $this->withDummy]);
     }
 
     public function disableExceptionHandling()

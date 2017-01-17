@@ -1,6 +1,6 @@
 <?php
 
-namespace TCG\Voyager\Tests;
+namespace NCH\Codeforlife\Tests;
 
 use Illuminate\Support\Facades\Auth;
 
@@ -19,7 +19,7 @@ class DashboardTest extends TestCase
     {
         // We must first login and visit the dashboard page.
         Auth::loginUsingId(1);
-        $this->visit(route('voyager.dashboard'));
+        $this->visit(route('codeforlife.dashboard'));
 
         $this->see('Dashboard');
 
@@ -28,33 +28,33 @@ class DashboardTest extends TestCase
 
         // list them.
         $this->click('View All Users');
-        $this->seePageIs(route('voyager.users.index'));
+        $this->seePageIs(route('codeforlife.users.index'));
 
         // and return to dashboard from there.
         $this->click('Dashboard');
-        $this->seePageIs(route('voyager.dashboard'));
+        $this->seePageIs(route('codeforlife.dashboard'));
 
         // We can see number of posts.
         $this->see('4 Post(s)');
 
         // list them.
         $this->click('View All Posts');
-        $this->seePageIs(route('voyager.posts.index'));
+        $this->seePageIs(route('codeforlife.posts.index'));
 
         // and return to dashboard from there.
         $this->click('Dashboard');
-        $this->seePageIs(route('voyager.dashboard'));
+        $this->seePageIs(route('codeforlife.dashboard'));
 
         // We can see number of Pages.
         $this->see('1 Page(s)');
 
         // list them.
         $this->click('View All Pages');
-        $this->seePageIs(route('voyager.pages.index'));
+        $this->seePageIs(route('codeforlife.pages.index'));
 
         // and return to Dashboard from there.
         $this->click('Dashboard');
-        $this->seePageIs(route('voyager.dashboard'));
+        $this->seePageIs(route('codeforlife.dashboard'));
         $this->see('Dashboard');
     }
 }

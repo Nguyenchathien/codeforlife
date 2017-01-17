@@ -12,7 +12,7 @@ class MakeModelCommand extends ModelMakeCommand
      *
      * @var string
      */
-    protected $name = 'voyager:make:model';
+    protected $name = 'codeforlife:make:model';
 
     /**
      * The console command description.

@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use TCG\Voyager\Models\Permission;
-use TCG\Voyager\Models\Role;
+use NCH\Codeforlife\Models\Permission;
+use NCH\Codeforlife\Models\Role;
 
 class PermissionRoleTableSeeder extends Seeder
 {

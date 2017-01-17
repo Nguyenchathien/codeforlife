@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use TCG\Voyager\Models\Menu;
-use TCG\Voyager\Models\MenuItem;
+use NCH\Codeforlife\Models\Menu;
+use NCH\Codeforlife\Models\MenuItem;
 
 class MenuItemsTableSeeder extends Seeder
 {
@@ -21,7 +21,7 @@ class MenuItemsTableSeeder extends Seeder
             $menuItem = MenuItem::firstOrNew([
                 'menu_id'    => $menu->id,
                 'title'      => 'Dashboard',
-                'url'        => route('voyager.dashboard', [], false),
+                'url'        => route('codeforlife.dashboard', [], false),
             ]);
             if (!$menuItem->exists) {
                 $menuItem->fill([
@@ -36,7 +36,7 @@ class MenuItemsTableSeeder extends Seeder
             $menuItem = MenuItem::firstOrNew([
                 'menu_id'    => $menu->id,
                 'title'      => 'Media',
-                'url'        => route('voyager.media.index', [], false),
+                'url'        => route('codeforlife.media.index', [], false),
             ]);
             if (!$menuItem->exists) {
                 $menuItem->fill([
@@ -51,7 +51,7 @@ class MenuItemsTableSeeder extends Seeder
             $menuItem = MenuItem::firstOrNew([
                 'menu_id'    => $menu->id,
                 'title'      => 'Posts',
-                'url'        => route('voyager.posts.index', [], false),
+                'url'        => route('codeforlife.posts.index', [], false),
             ]);
             if (!$menuItem->exists) {
                 $menuItem->fill([
@@ -66,7 +66,7 @@ class MenuItemsTableSeeder extends Seeder
             $menuItem = MenuItem::firstOrNew([
                 'menu_id'    => $menu->id,
                 'title'      => 'Users',
-                'url'        => route('voyager.users.index', [], false),
+                'url'        => route('codeforlife.users.index', [], false),
             ]);
             if (!$menuItem->exists) {
                 $menuItem->fill([
@@ -81,7 +81,7 @@ class MenuItemsTableSeeder extends Seeder
             $menuItem = MenuItem::firstOrNew([
                 'menu_id'    => $menu->id,
                 'title'      => 'Categories',
-                'url'        => route('voyager.categories.index', [], false),
+                'url'        => route('codeforlife.categories.index', [], false),
             ]);
             if (!$menuItem->exists) {
                 $menuItem->fill([
@@ -96,7 +96,7 @@ class MenuItemsTableSeeder extends Seeder
             $menuItem = MenuItem::firstOrNew([
                 'menu_id'    => $menu->id,
                 'title'      => 'Pages',
-                'url'        => route('voyager.pages.index', [], false),
+                'url'        => route('codeforlife.pages.index', [], false),
             ]);
             if (!$menuItem->exists) {
                 $menuItem->fill([
@@ -111,7 +111,7 @@ class MenuItemsTableSeeder extends Seeder
             $menuItem = MenuItem::firstOrNew([
                 'menu_id'    => $menu->id,
                 'title'      => 'Roles',
-                'url'        => route('voyager.roles.index', [], false),
+                'url'        => route('codeforlife.roles.index', [], false),
             ]);
             if (!$menuItem->exists) {
                 $menuItem->fill([
@@ -141,7 +141,7 @@ class MenuItemsTableSeeder extends Seeder
             $menuItem = MenuItem::firstOrNew([
                 'menu_id'    => $menu->id,
                 'title'      => 'Menu Builder',
-                'url'        => route('voyager.menus.index', [], false),
+                'url'        => route('codeforlife.menus.index', [], false),
             ]);
             if (!$menuItem->exists) {
                 $menuItem->fill([
@@ -156,7 +156,7 @@ class MenuItemsTableSeeder extends Seeder
             $menuItem = MenuItem::firstOrNew([
                 'menu_id'    => $menu->id,
                 'title'      => 'Database',
-                'url'        => route('voyager.database.index', [], false),
+                'url'        => route('codeforlife.database.index', [], false),
             ]);
             if (!$menuItem->exists) {
                 $menuItem->fill([
@@ -171,7 +171,7 @@ class MenuItemsTableSeeder extends Seeder
             $menuItem = MenuItem::firstOrNew([
                 'menu_id'    => $menu->id,
                 'title'      => 'Settings',
-                'url'        => route('voyager.settings.index', [], false),
+                'url'        => route('codeforlife.settings.index', [], false),
             ]);
             if (!$menuItem->exists) {
                 $menuItem->fill([

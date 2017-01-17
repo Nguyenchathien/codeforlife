@@ -1,9 +1,9 @@
 <?php
 
-namespace TCG\Voyager\Tests;
+namespace NCh\Codeforlife\Tests;
 
 use Illuminate\Support\Facades\Auth;
-use TCG\Voyager\Models\Category;
+use NCh\Codeforlife\Models\Category;
 
 class CategoryTest extends TestCase
 {

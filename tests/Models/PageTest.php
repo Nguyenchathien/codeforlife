@@ -1,9 +1,9 @@
 <?php
 
-namespace TCG\Voyager\Tests;
+namespace NCH\Codeforlife\Tests;
 
 use Illuminate\Support\Facades\Auth;
-use TCG\Voyager\Models\Page;
+use NCH\Codeforlife\Models\Page;
 
 class PageTest extends TestCase
 {

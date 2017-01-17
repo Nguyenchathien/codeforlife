@@ -1,6 +1,6 @@
 <?php
 
-namespace TCG\Voyager\Http\Controllers;
+namespace NCH\Codeforlife\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -8,20 +8,20 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Intervention\Image\Constraint;
 use Intervention\Image\Facades\Image;
-use TCG\Voyager\Voyager;
+use NCH\Codeforlife\Codeforlife;
 
-class VoyagerController extends Controller
+class CodeforlifeController extends Controller
 {
     public function index()
     {
-        return view('voyager::index');
+        return view('codeforlife::index');
     }
 
     public function logout()
     {
         Auth::logout();
 
-        return redirect()->route('voyager.logout');
+        return redirect()->route('codeforlife.logout');
     }
 
     public function upload(Request $request)
@@ -45,7 +45,7 @@ class VoyagerController extends Controller
                 ->encode($file->getClientOriginalExtension(), 75);
 
             // move uploaded file from temp to uploads directory
-            if (Storage::put(config('voyager.storage.subfolder').$fullPath, (string) $image, 'public')) {
+            if (Storage::put(config('codeforlife.storage.subfolder').$fullPath, (string) $image, 'public')) {
                 $status = 'Image successfully uploaded!';
                 $fullFilename = $fullPath;
             } else {
@@ -56,11 +56,11 @@ class VoyagerController extends Controller
         }
 
         // echo out script that TinyMCE can handle and update the image in the editor
-        return "<script> parent.setImageValue('".Voyager::image($fullFilename)."'); </script>";
+        return "<script> parent.setImageValue('".Codeforlife::image($fullFilename)."'); </script>";
     }
 
     public function profile()
     {
-        return view('voyager::profile');
+        return view('codeforlife::profile');
     }
 }

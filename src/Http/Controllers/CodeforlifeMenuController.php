@@ -1,33 +1,33 @@
 <?php
 
-namespace TCG\Voyager\Http\Controllers;
+namespace NCH\Codeforlife\Http\Controllers;
 
 use Illuminate\Http\Request;
-use TCG\Voyager\Models\Menu;
-use TCG\Voyager\Models\MenuItem;
-use TCG\Voyager\Voyager;
+use NCH\Codeforlife\Models\Menu;
+use NCH\Codeforlife\Models\MenuItem;
+use NCH\Codeforlife\Codeforlife;
 
-class VoyagerMenuController extends Controller
+class CodeforlifeMenuController extends Controller
 {
     public function builder($id)
     {
-        Voyager::can('edit_menus');
+        Codeforlife::can('edit_menus');
 
         $menu = Menu::findOrFail($id);
 
-        return view('voyager::menus.builder', compact('menu'));
+        return view('codeforlife::menus.builder', compact('menu'));
     }
 
     public function delete_menu($menu, $id)
     {
-        Voyager::can('delete_menus');
+        Codeforlife::can('delete_menus');
 
         $item = MenuItem::findOrFail($id);
 
         $item->destroy($id);
 
         return redirect()
-            ->route('voyager.menus.builder', [$menu])
+            ->route('codeforlife.menus.builder', [$menu])
             ->with([
                 'message'    => 'Successfully Deleted Menu Item.',
                 'alert-type' => 'success',
@@ -36,7 +36,7 @@ class VoyagerMenuController extends Controller
 
     public function add_item(Request $request)
     {
-        Voyager::can('add_menus');
+        Codeforlife::can('add_menus');
 
         $data = $request->all();
         $data['order'] = 1;
@@ -52,7 +52,7 @@ class VoyagerMenuController extends Controller
         MenuItem::create($data);
 
         return redirect()
-            ->route('voyager.menus.builder', [$data['menu_id']])
+            ->route('codeforlife.menus.builder', [$data['menu_id']])
             ->with([
                 'message'    => 'Successfully Created New Menu Item.',
                 'alert-type' => 'success',
@@ -61,7 +61,7 @@ class VoyagerMenuController extends Controller
 
     public function update_item(Request $request)
     {
-        Voyager::can('edit_menus');
+        Codeforlife::can('edit_menus');
 
         $id = $request->input('id');
         $data = $request->except(['id']);
@@ -70,7 +70,7 @@ class VoyagerMenuController extends Controller
         $menuItem->update($data);
 
         return redirect()
-            ->route('voyager.menus.builder', [$menuItem->menu_id])
+            ->route('codeforlife.menus.builder', [$menuItem->menu_id])
             ->with([
                 'message'    => 'Successfully Updated Menu Item.',
                 'alert-type' => 'success',

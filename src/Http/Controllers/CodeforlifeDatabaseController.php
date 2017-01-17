@@ -1,6 +1,6 @@
 <?php
 
-namespace TCG\Voyager\Http\Controllers;
+namespace NCH\Codeforlife\Http\Controllers;
 
 use Exception;
 use Illuminate\Console\AppNamespaceDetectorTrait;
@@ -10,33 +10,33 @@ use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
-use TCG\Voyager\Http\Controllers\Traits\DatabaseUpdate;
-use TCG\Voyager\Models\DataType;
-use TCG\Voyager\Models\Permission;
-use TCG\Voyager\Voyager;
+use NCH\Codeforlife\Http\Controllers\Traits\DatabaseUpdate;
+use NCH\Codeforlife\Models\DataType;
+use NCH\Codeforlife\Models\Permission;
+use NCH\Codeforlife\Codeforlife;
 
-class VoyagerDatabaseController extends Controller
+class CodeforlifeDatabaseController extends Controller
 {
     use DatabaseUpdate;
     use AppNamespaceDetectorTrait;
 
     public function index()
     {
-        Voyager::can('browse_database');
+        Codeforlife::can('browse_database');
 
-        return view('voyager::tools.database.index');
+        return view('codeforlife::tools.database.index');
     }
 
     public function create()
     {
-        Voyager::can('browse_database');
+        Codeforlife::can('browse_database');
 
-        return view('voyager::tools.database.edit-add');
+        return view('codeforlife::tools.database.edit-add');
     }
 
     public function store(Request $request)
     {
-        Voyager::can('browse_database');
+        Codeforlife::can('browse_database');
 
         $tableName = $request->name;
 
@@ -60,7 +60,7 @@ class VoyagerDatabaseController extends Controller
                     $params['--migration'] = true;
                 }
 
-                Artisan::call('voyager:make:model', $params);
+                Artisan::call('codeforlife:make:model', $params);
             } elseif (isset($request->create_migration) && $request->create_migration == 'on') {
                 Artisan::call('make:migration', [
                     'name'    => 'create_'.$tableName.'_table',
@@ -69,7 +69,7 @@ class VoyagerDatabaseController extends Controller
             }
 
             return redirect()
-                ->route('voyager.database.index')
+                ->route('codeforlife.database.index')
                 ->with(
                     [
                         'message'    => "Successfully created $tableName table",
@@ -88,11 +88,11 @@ class VoyagerDatabaseController extends Controller
 
     public function edit($table)
     {
-        Voyager::can('browse_database');
+        Codeforlife::can('browse_database');
 
         $rows = $this->describeTable($table);
 
-        return view('voyager::tools.database.edit-add', compact('table', 'rows'));
+        return view('codeforlife::tools.database.edit-add', compact('table', 'rows'));
     }
 
     /**
@@ -104,7 +104,7 @@ class VoyagerDatabaseController extends Controller
      */
     public function update(Request $request)
     {
-        Voyager::can('browse_database');
+        Codeforlife::can('browse_database');
 
         $this->renameTable($request->original_name, $request->name);
         $this->renameColumns($request, $request->name);
@@ -112,7 +112,7 @@ class VoyagerDatabaseController extends Controller
         $this->updateColumns($request, $request->name);
 
         return redirect()
-            ->route('voyager.database.index')
+            ->route('codeforlife.database.index')
             ->with(
                 [
                     'message'    => "Successfully updated $request->name table",
@@ -123,7 +123,7 @@ class VoyagerDatabaseController extends Controller
 
     public function reorder_column(Request $request)
     {
-        Voyager::can('browse_database');
+        Codeforlife::can('browse_database');
 
         if ($request->ajax()) {
             $table = $request->table;
@@ -142,20 +142,20 @@ class VoyagerDatabaseController extends Controller
 
     public function show($table)
     {
-        Voyager::can('browse_database');
+        Codeforlife::can('browse_database');
 
         return response()->json($this->describeTable($table));
     }
 
     public function destroy($table)
     {
-        Voyager::can('browse_database');
+        Codeforlife::can('browse_database');
 
         try {
             Schema::drop($table);
 
             return redirect()
-                ->route('voyager.database.index')
+                ->route('codeforlife.database.index')
                 ->with(
                     [
                         'message'    => "Successfully deleted $table table",
@@ -181,11 +181,11 @@ class VoyagerDatabaseController extends Controller
      */
     public function addBread(Request $request)
     {
-        Voyager::can('browse_database');
+        Codeforlife::can('browse_database');
 
         $table = $request->input('table');
 
-        return view('voyager::tools.database.edit-add-bread', $this->prepopulateBreadInfo($table));
+        return view('codeforlife::tools.database.edit-add-bread', $this->prepopulateBreadInfo($table));
     }
 
     private function prepopulateBreadInfo($table)
@@ -205,7 +205,7 @@ class VoyagerDatabaseController extends Controller
 
     public function storeBread(Request $request)
     {
-        Voyager::can('browse_database');
+        Codeforlife::can('browse_database');
 
         $dataType = new DataType();
         $data = $dataType->updateDataType($request->all())
@@ -218,15 +218,15 @@ class VoyagerDatabaseController extends Controller
                 'alert-type' => 'error',
             ];
 
-        return redirect()->route('voyager.database.index')->with($data);
+        return redirect()->route('codeforlife.database.index')->with($data);
     }
 
     public function addEditBread($id)
     {
-        Voyager::can('browse_database');
+        Codeforlife::can('browse_database');
 
         return view(
-            'voyager::tools.database.edit-add-bread', [
+            'codeforlife::tools.database.edit-add-bread', [
             'dataType' => DataType::find($id),
         ]
         );
@@ -234,9 +234,9 @@ class VoyagerDatabaseController extends Controller
 
     public function updateBread(Request $request, $id)
     {
-        Voyager::can('browse_database');
+        Codeforlife::can('browse_database');
 
-        /** @var \TCG\Voyager\Models\DataType $dataType */
+        /** @var \NCH\Codeforlife\Models\DataType $dataType */
         $dataType = DataType::find($id);
         $data = $dataType->updateDataType($request->all())
             ? [
@@ -248,14 +248,14 @@ class VoyagerDatabaseController extends Controller
                 'alert-type' => 'error',
             ];
 
-        return redirect()->route('voyager.database.index')->with($data);
+        return redirect()->route('codeforlife.database.index')->with($data);
     }
 
     public function deleteBread($id)
     {
-        Voyager::can('browse_database');
+        Codeforlife::can('browse_database');
 
-        /** @var \TCG\Voyager\Models\DataType $dataType */
+        /** @var \NCH\Codeforlife\Models\DataType $dataType */
         $dataType = DataType::find($id);
         $data = DataType::destroy($id)
             ? [
@@ -271,6 +271,6 @@ class VoyagerDatabaseController extends Controller
             Permission::removeFrom($dataType->name);
         }
 
-        return redirect()->route('voyager.database.index')->with($data);
+        return redirect()->route('codeforlife.database.index')->with($data);
     }
 }

@@ -1,28 +1,28 @@
 <?php
 
-namespace TCG\Voyager\Http\Controllers;
+namespace NCH\Codeforlife\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use TCG\Voyager\Models\Setting;
-use TCG\Voyager\Voyager;
+use NCH\Codeforlife\Models\Setting;
+use NCH\Codeforlife\Codeforlife;
 
-class VoyagerSettingsController extends Controller
+class CodeforlifeSettingsController extends Controller
 {
     public function index()
     {
         // Check permission
-        Voyager::can('browse_settings');
+        Codeforlife::can('browse_settings');
 
         $settings = Setting::orderBy('order', 'ASC')->get();
 
-        return view('voyager::settings.index', compact('settings'));
+        return view('codeforlife::settings.index', compact('settings'));
     }
 
     public function store(Request $request)
     {
         // Check permission
-        Voyager::can('browse_settings');
+        Codeforlife::can('browse_settings');
 
         $lastSetting = Setting::orderBy('order', 'DESC')->first();
 
@@ -46,7 +46,7 @@ class VoyagerSettingsController extends Controller
     public function update(Request $request)
     {
         // Check permission
-        Voyager::can('visit_settings');
+        Codeforlife::can('visit_settings');
 
         $settings = Setting::all();
 
@@ -73,10 +73,10 @@ class VoyagerSettingsController extends Controller
 
     public function delete($id)
     {
-        Voyager::can('browse_settings');
+        Codeforlife::can('browse_settings');
 
         // Check permission
-        Voyager::can('visit_settings');
+        Codeforlife::can('visit_settings');
 
         Setting::destroy($id);
 
@@ -114,15 +114,15 @@ class VoyagerSettingsController extends Controller
     public function delete_value($id)
     {
         // Check permission
-        Voyager::can('browse_settings');
+        Codeforlife::can('browse_settings');
 
         $setting = Setting::find($id);
 
         if (isset($setting->id)) {
             // If the type is an image... Then delete it
             if ($setting->type == 'image') {
-                if (Storage::exists(config('voyager.storage.subfolder').$setting->value)) {
-                    Storage::delete(config('voyager.storage.subfolder').$setting->value);
+                if (Storage::exists(config('codeforlife.storage.subfolder').$setting->value)) {
+                    Storage::delete(config('codeforlife.storage.subfolder').$setting->value);
                 }
             }
             $setting->value = '';

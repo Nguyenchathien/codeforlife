@@ -1,6 +1,6 @@
 <?php
 
-namespace TCG\Voyager\Tests;
+namespace NCH\Codeforlife\Tests;
 
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Support\Facades\Auth;
@@ -27,14 +27,14 @@ class UserProfileTest extends TestCase
 
         $this->user = Auth::loginUsingId(1);
 
-        $this->editPageForTheCurrentUser = route('voyager.users.edit', ['user' => $this->user->id]);
+        $this->editPageForTheCurrentUser = route('codeforlife.users.edit', ['user' => $this->user->id]);
 
-        $this->listOfUsers = route('voyager.users.index');
+        $this->listOfUsers = route('codeforlife.users.index');
     }
 
     public function testCanSeeTheUserInfoOnHisProfilePage()
     {
-        $this->visit(route('voyager.profile'))
+        $this->visit(route('codeforlife.profile'))
              ->seeInElement('h4', $this->user->name)
              ->seeInElement('.user-email', $this->user->email)
              ->seeLink('Edit My Profile');
@@ -42,7 +42,7 @@ class UserProfileTest extends TestCase
 
     public function testCanEditUserName()
     {
-        $this->visit(route('voyager.profile'))
+        $this->visit(route('codeforlife.profile'))
              ->click('Edit My Profile')
              ->see('Edit User')
              ->seePageIs($this->editPageForTheCurrentUser)
@@ -57,7 +57,7 @@ class UserProfileTest extends TestCase
 
     public function testCanEditUserEmail()
     {
-        $this->visit(route('voyager.profile'))
+        $this->visit(route('codeforlife.profile'))
              ->click('Edit My Profile')
              ->see('Edit User')
              ->seePageIs($this->editPageForTheCurrentUser)
@@ -72,7 +72,7 @@ class UserProfileTest extends TestCase
 
     public function testCanEditUserPassword()
     {
-        $this->visit(route('voyager.profile'))
+        $this->visit(route('codeforlife.profile'))
              ->click('Edit My Profile')
              ->see('Edit User')
              ->seePageIs($this->editPageForTheCurrentUser)
@@ -86,7 +86,7 @@ class UserProfileTest extends TestCase
 
     public function testCanEditUserAvatar()
     {
-        $this->visit(route('voyager.profile'))
+        $this->visit(route('codeforlife.profile'))
              ->click('Edit My Profile')
              ->see('Edit User')
              ->seePageIs($this->editPageForTheCurrentUser)

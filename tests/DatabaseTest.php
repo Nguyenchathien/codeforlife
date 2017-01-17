@@ -1,12 +1,12 @@
 <?php
 
-namespace TCG\Voyager\Tests;
+namespace NCH\Codeforlife\Tests;
 
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
-use TCG\Voyager\Http\Controllers\Traits\DatabaseQueryBuilder;
+use NCH\Codeforlife\Http\Controllers\Traits\DatabaseQueryBuilder;
 
 class DatabaseTest extends TestCase
 {
@@ -25,8 +25,8 @@ class DatabaseTest extends TestCase
         Auth::loginUsingId(1);
 
         // Create table
-        $this->post(route('voyager.database.store'), [
-            'name'     => 'voyagertest',
+        $this->post(route('codeforlife.database.store'), [
+            'name'     => 'codeforlife',
             'field'    => [
                 'id',
                 'tiny_int_field',
@@ -168,16 +168,16 @@ class DatabaseTest extends TestCase
         ]);
 
         // Test redirect to correct page
-        $this->assertRedirectedToRoute('voyager.database.index', [], [
+        $this->assertRedirectedToRoute('codeforlife.database.index', [], [
             'message'    => 'Successfully created voyagertest table',
             'alert-type' => 'success',
         ]);
 
         // Test table exist
-        $this->assertTrue(Schema::hasTable('voyagertest'));
+        $this->assertTrue(Schema::hasTable('codeforlifetest'));
 
         // Test column type
-        $columns = DB::select(DB::raw('PRAGMA table_info(voyagertest)'));
+        $columns = DB::select(DB::raw('PRAGMA table_info(codeforlifetest)'));
         $this->assertEquals('integer', $columns[0]->type);
         $this->assertEquals('integer', $columns[1]->type);
         $this->assertEquals('integer', $columns[2]->type);
@@ -207,7 +207,7 @@ class DatabaseTest extends TestCase
         Auth::loginUsingId(1);
 
         // Create table
-        $this->post(route('voyager.database.store'), [
+        $this->post(route('codeforlife.database.store'), [
             'name'     => 'voyagertest',
             'field'    => [
                 'string_field',
@@ -221,7 +221,7 @@ class DatabaseTest extends TestCase
         ]);
 
         // Test redirect to correct page
-        $this->assertRedirectedToRoute('voyager.database.index', [], [
+        $this->assertRedirectedToRoute('codeforlife.database.index', [], [
             'message'    => 'Successfully created voyagertest table',
             'alert-type' => 'success',
         ]);
@@ -240,7 +240,7 @@ class DatabaseTest extends TestCase
         Auth::loginUsingId(1);
 
         // Create table
-        $this->post(route('voyager.database.store'), [
+        $this->post(route('codeforlife.database.store'), [
             'name'     => 'voyagertest',
             'field'    => [
                 'id',
@@ -257,7 +257,7 @@ class DatabaseTest extends TestCase
         ]);
 
         /// Test redirect to correct page
-        $this->assertRedirectedToRoute('voyager.database.index', [], [
+        $this->assertRedirectedToRoute('codeforlife.database.index', [], [
             'message'    => 'Successfully created voyagertest table',
             'alert-type' => 'success',
         ]);
@@ -275,7 +275,7 @@ class DatabaseTest extends TestCase
         Auth::loginUsingId(1);
 
         // Create table
-        $this->post(route('voyager.database.store'), [
+        $this->post(route('codeforlife.database.store'), [
             'name'  => 'voyagertest',
             'field' => [
                 'name',
@@ -289,7 +289,7 @@ class DatabaseTest extends TestCase
         ]);
 
         // Test redirect to correct page
-        $this->assertRedirectedToRoute('voyager.database.index', [], [
+        $this->assertRedirectedToRoute('codeforlife.database.index', [], [
             'message'    => 'Successfully created voyagertest table',
             'alert-type' => 'success',
         ]);
@@ -308,7 +308,7 @@ class DatabaseTest extends TestCase
         Auth::loginUsingId(1);
 
         // Create table
-        $this->post(route('voyager.database.store'), [
+        $this->post(route('codeforlife.database.store'), [
             'name'    => 'voyagertest',
             'field'   => [
                 'name',
@@ -322,7 +322,7 @@ class DatabaseTest extends TestCase
         ]);
 
         // Test redirect to correct page
-        $this->assertRedirectedToRoute('voyager.database.index', [], [
+        $this->assertRedirectedToRoute('codeforlife.database.index', [], [
             'message'    => 'Successfully created voyagertest table',
             'alert-type' => 'success',
         ]);
@@ -340,7 +340,7 @@ class DatabaseTest extends TestCase
         Auth::loginUsingId(1);
 
         // Setup table
-        $this->post(route('voyager.database.store'), [
+        $this->post(route('codeforlife.database.store'), [
             'name'  => 'voyagertest',
             'field' => [
                 'id',
@@ -366,7 +366,7 @@ class DatabaseTest extends TestCase
         $this->assertTrue(Schema::hasTable('voyagertest'));
 
         // Update table with same fields
-        $this->put(route('voyager.database.update', ['voyagertest']), [
+        $this->put(route('codeforlife.database.update', ['voyagertest']), [
             'name'           => 'voyagertest',
             'original_name'  => 'voyagertest',
             'field'          => [
@@ -407,7 +407,7 @@ class DatabaseTest extends TestCase
         ]);
 
         // Test redirect to correct page
-        $this->assertRedirectedToRoute('voyager.database.index', [], [
+        $this->assertRedirectedToRoute('codeforlife.database.index', [], [
             'message'    => 'Successfully updated voyagertest table',
             'alert-type' => 'success',
         ]);
@@ -428,7 +428,7 @@ class DatabaseTest extends TestCase
         Auth::loginUsingId(1);
 
         // Setup table
-        $this->post(route('voyager.database.store'), [
+        $this->post(route('codeforlife.database.store'), [
             'name'  => 'voyagertest',
             'field' => [
                 'id',
@@ -445,13 +445,13 @@ class DatabaseTest extends TestCase
         $this->assertTrue(Schema::hasTable('voyagertest'));
 
         // Test update table with same fields
-        $this->put(route('voyager.database.update', ['voyagertest']), [
+        $this->put(route('codeforlife.database.update', ['voyagertest']), [
             'name'          => 'voyagerpost',
             'original_name' => 'voyagertest',
         ]);
 
         // Test redirect to correct page
-        $this->assertRedirectedToRoute('voyager.database.index', [], [
+        $this->assertRedirectedToRoute('codeforlife.database.index', [], [
             'message'    => 'Successfully updated voyagerpost table',
             'alert-type' => 'success',
         ]);
@@ -465,7 +465,7 @@ class DatabaseTest extends TestCase
         Auth::loginUsingId(1);
 
         // Setup table
-        $this->post(route('voyager.database.store'), [
+        $this->post(route('codeforlife.database.store'), [
             'name'  => 'voyagertest',
             'field' => [
                 'id',
@@ -485,7 +485,7 @@ class DatabaseTest extends TestCase
         $this->assertTrue(Schema::hasTable('voyagertest'));
 
         // Update table with same fields
-        $this->put(route('voyager.database.update', ['voyagertest']), [
+        $this->put(route('codeforlife.database.update', ['voyagertest']), [
             'name'           => 'voyagertest',
             'field'          => [
                 'id',
@@ -498,7 +498,7 @@ class DatabaseTest extends TestCase
         ]);
 
         // Test redirect to correct page
-        $this->assertRedirectedToRoute('voyager.database.index', [], [
+        $this->assertRedirectedToRoute('codeforlife.database.index', [], [
             'message'    => 'Successfully updated voyagertest table',
             'alert-type' => 'success',
         ]);
@@ -516,7 +516,7 @@ class DatabaseTest extends TestCase
         Auth::loginUsingId(1);
 
         // Setup table
-        $this->post(route('voyager.database.store'), [
+        $this->post(route('codeforlife.database.store'), [
             'name'  => 'voyagertest',
             'field' => [
                 'id',
@@ -539,7 +539,7 @@ class DatabaseTest extends TestCase
         $this->assertTrue(Schema::hasTable('voyagertest'));
 
         // Update table with same fields
-        $this->put(route('voyager.database.update', ['voyagertest']), [
+        $this->put(route('codeforlife.database.update', ['voyagertest']), [
             'name'  => 'voyagertest',
             'field' => [
                 'id',
@@ -559,7 +559,7 @@ class DatabaseTest extends TestCase
         ]);
 
         // Test redirect to correct page
-        $this->assertRedirectedToRoute('voyager.database.index', [], [
+        $this->assertRedirectedToRoute('codeforlife.database.index', [], [
             'message'    => 'Successfully updated voyagertest table',
             'alert-type' => 'success',
         ]);
@@ -579,7 +579,7 @@ class DatabaseTest extends TestCase
         Auth::loginUsingId(1);
 
         // Setup table
-        $this->post(route('voyager.database.store'), [
+        $this->post(route('codeforlife.database.store'), [
             'name'     => 'voyagertest',
             'field'    => [
                 'id',
@@ -607,7 +607,7 @@ class DatabaseTest extends TestCase
         $this->assertTrue(Schema::hasTable('voyagertest'));
 
         // Update table with same fields
-        $this->put(route('voyager.database.update', ['voyagertest']), [
+        $this->put(route('codeforlife.database.update', ['voyagertest']), [
             'name'     => 'voyagertest',
             'field'    => [
                 'id',
@@ -632,7 +632,7 @@ class DatabaseTest extends TestCase
         ]);
 
         // Test redirect to correct page
-        $this->assertRedirectedToRoute('voyager.database.index', [], [
+        $this->assertRedirectedToRoute('codeforlife.database.index', [], [
             'message'    => 'Successfully updated voyagertest table',
             'alert-type' => 'success',
         ]);
@@ -652,7 +652,7 @@ class DatabaseTest extends TestCase
         Auth::loginUsingId(1);
 
         // Setup table
-        $this->post(route('voyager.database.store'), [
+        $this->post(route('codeforlife.database.store'), [
             'name'  => 'voyagertest',
             'field' => [
                 'id',
@@ -675,7 +675,7 @@ class DatabaseTest extends TestCase
         $this->assertTrue(Schema::hasTable('voyagertest'));
 
         // Update table with same fields
-        $this->put(route('voyager.database.update', ['voyagertest']), [
+        $this->put(route('codeforlife.database.update', ['voyagertest']), [
             'name'  => 'voyagertest',
             'field' => [
                 'id',
@@ -695,7 +695,7 @@ class DatabaseTest extends TestCase
         ]);
 
         // Test redirect to correct page
-        $this->assertRedirectedToRoute('voyager.database.index', [], [
+        $this->assertRedirectedToRoute('codeforlife.database.index', [], [
             'message'    => 'Successfully updated voyagertest table',
             'alert-type' => 'success',
         ]);
@@ -713,7 +713,7 @@ class DatabaseTest extends TestCase
         Auth::loginUsingId(1);
 
         // Setup table
-        $this->post(route('voyager.database.store'), [
+        $this->post(route('codeforlife.database.store'), [
             'name'  => 'voyagertest',
             'field' => [
                 'id',
@@ -736,7 +736,7 @@ class DatabaseTest extends TestCase
         $this->assertTrue(Schema::hasTable('voyagertest'));
 
         // Update table with same fields
-        $this->put(route('voyager.database.update', ['voyagertest']), [
+        $this->put(route('codeforlife.database.update', ['voyagertest']), [
             'name'  => 'voyagertest',
             'field' => [
                 'id',
@@ -756,7 +756,7 @@ class DatabaseTest extends TestCase
         ]);
 
         // Test redirect to correct page
-        $this->assertRedirectedToRoute('voyager.database.index', [], [
+        $this->assertRedirectedToRoute('codeforlife.database.index', [], [
             'message'    => 'Successfully updated voyagertest table',
             'alert-type' => 'success',
         ]);
@@ -775,7 +775,7 @@ class DatabaseTest extends TestCase
         Auth::loginUsingId(1);
 
         // Setup table
-        $this->post(route('voyager.database.store'), [
+        $this->post(route('codeforlife.database.store'), [
             'name'  => 'voyagertest',
             'field' => [
                 'id',
@@ -798,7 +798,7 @@ class DatabaseTest extends TestCase
         $this->assertTrue(Schema::hasTable('voyagertest'));
 
         // Update table with same fields
-        $this->put(route('voyager.database.update', ['voyagertest']), [
+        $this->put(route('codeforlife.database.update', ['voyagertest']), [
             'name'           => 'voyagertest',
             'field'          => [
                 'id',
@@ -818,7 +818,7 @@ class DatabaseTest extends TestCase
         ]);
 
         // Test redirect to correct page
-        $this->assertRedirectedToRoute('voyager.database.index', [], [
+        $this->assertRedirectedToRoute('codeforlife.database.index', [], [
             'message'    => 'Successfully updated voyagertest table',
             'alert-type' => 'success',
         ]);
@@ -836,7 +836,7 @@ class DatabaseTest extends TestCase
         Auth::loginUsingId(1);
 
         // Setup table
-        $this->post(route('voyager.database.store'), [
+        $this->post(route('codeforlife.database.store'), [
             'name'  => 'voyagertest',
             'field' => [
                 'id',
@@ -859,7 +859,7 @@ class DatabaseTest extends TestCase
         $this->assertTrue(Schema::hasTable('voyagertest'));
 
         // Update table with same fields
-        $this->put(route('voyager.database.update', ['voyagertest']), [
+        $this->put(route('codeforlife.database.update', ['voyagertest']), [
             'name'    => 'voyagertest',
             'field'   => [
                 'id',
@@ -874,7 +874,7 @@ class DatabaseTest extends TestCase
         ]);
 
         // Test redirect to correct page
-        $this->assertRedirectedToRoute('voyager.database.index', [], [
+        $this->assertRedirectedToRoute('codeforlife.database.index', [], [
             'message'    => 'Successfully updated voyagertest table',
             'alert-type' => 'success',
         ]);
@@ -894,7 +894,7 @@ class DatabaseTest extends TestCase
         Auth::loginUsingId(1);
 
         // Setup table
-        $this->post(route('voyager.database.store'), [
+        $this->post(route('codeforlife.database.store'), [
             'name'  => 'voyagertest',
             'field' => [
                 'id',
@@ -916,10 +916,10 @@ class DatabaseTest extends TestCase
         // Test table exist
         $this->assertTrue(Schema::hasTable('voyagertest'));
 
-        $this->delete(route('voyager.database.destroy', ['voyagertest']));
+        $this->delete(route('codeforlife.database.destroy', ['voyagertest']));
 
         // Test redirect to correct page
-        $this->assertRedirectedToRoute('voyager.database.index', [], [
+        $this->assertRedirectedToRoute('codeforlife.database.index', [], [
             'message'    => 'Successfully deleted voyagertest table',
             'alert-type' => 'success',
         ]);

@@ -23,7 +23,7 @@ class ControllersCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Publish all the controllers from Voyager.';
+    protected $description = 'Publish all the controllers from Codeforlife.';
 
     /**
      * The Filesystem instance.

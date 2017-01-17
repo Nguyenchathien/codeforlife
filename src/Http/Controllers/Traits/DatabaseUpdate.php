@@ -1,6 +1,6 @@
 <?php
 
-namespace TCG\Voyager\Http\Controllers\Traits;
+namespace NCH\Codeforlife\Http\Controllers\Traits;
 
 use Exception;
 use Illuminate\Database\Schema\Blueprint;

@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use TCG\Voyager\Models\Setting;
+use NCH\Codeforlife\Models\Setting;
 
 class SettingsTableSeeder extends Seeder
 {

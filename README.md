@@ -17,7 +17,7 @@ Made with ❤️ by [The Control Group](https://www.thecontrolgroup.com)
 
 Laravel Admin & BREAD System (Browse, Read, Edit, Add, & Delete), made for Laravel 5.3.
 
-After creating your new Laravel application you can include the Voyager package with the following command: 
+After creating your new Laravel application you can include the Voyager package with the following command:
 
 ```bash
 composer require nch/codeforlife
@@ -32,17 +32,17 @@ DB_USERNAME=homestead
 DB_PASSWORD=secret
 ```
 
-Add the Voyager service provider to the `config/app.php` file in the `providers` array:
+Add the Codeforlife service provider to the `config/app.php` file in the `providers` array:
 
 ```php
 'providers' => [
     // Laravel Framework Service Providers...
     //...
-    
+
     // Package Service Providers
-    NCH\Codeforlife\VoyagerServiceProvider::class,
+    NCH\Codeforlife\CodeforlifeServiceProvider::class,
     // ...
-    
+
     // Application Service Providers
     // ...
 ],
@@ -63,13 +63,13 @@ If you prefer installing it with dummy run
 php artisan codeforlife:install --with-dummy
 ```
 
-And we're all good to go! 
+And we're all good to go!
 
 Start up a local development server with `php artisan serve` And, visit [http://localhost:8000/admin](http://localhost:8000/admin).
 
 If you did go ahead with the dummy data, a user should have been created for you with the following login credentials:
 
->**email:** `admin@admin.com`   
+>**email:** `admin@admin.com`
 >**password:** `password`
 
 NOTE: Please note that a dummy user is **only** created if there are no current users in your database.
